@@ -24,7 +24,7 @@ void GLAPIENTRY debug_message_callback(GLenum source,
                                        GLenum severity,
                                        GLsizei length,
                                        const GLchar* message,
-                                       const void* userParam) {
+                                       const void* user_param) {
   // map severity to logging level
   auto level = spdlog::level::debug;
   switch (severity) {
