@@ -10,17 +10,17 @@
 
 namespace broomstick {
 
+class Application;  // forward declaration
+
 class Window {
  public:
-  Window(const std::string& name);
+  Window(const std::shared_ptr<Application>& app, const std::string& name);
   Window(const Window&) = delete;
   Window(Window&&) = default;
   ~Window();
 
   Window& operator=(const Window& other) = delete;
   Window& operator=(Window&& other) = default;
-
-  static bool init_glfw();
 
   // getters
   bool should_close() const;
@@ -43,6 +43,7 @@ class Window {
   void swap_buffers() const;
 
  protected:
+  std::shared_ptr<Application> _app;
   GLFWwindow* _window;
   GLFWmonitor* _monitor;
   std::string _name;

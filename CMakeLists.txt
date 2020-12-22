@@ -18,12 +18,11 @@ find_package(glfw3 CONFIG REQUIRED)
 include_directories(src)
 
 add_library(broomstick
-  src/opengl.cpp
+  src/application.cpp
   src/buffer.cpp
   src/program.cpp
   src/shader.cpp
   src/vertex_array.cpp
-
   src/window.cpp
 )
 target_link_libraries(broomstick PRIVATE

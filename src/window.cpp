@@ -1,8 +1,11 @@
+#include "application.hpp"
+
 #include "window.hpp"
 
 namespace broomstick {
 
-Window::Window(const std::string& name) : _name{name}, _mouse_pos{-1.0, -1.0} {
+Window::Window(const std::shared_ptr<Application>& app, const std::string& name)
+    : _app{app}, _name{name}, _mouse_pos{-1.0, -1.0} {
   _monitor = glfwGetPrimaryMonitor();
   auto mode = glfwGetVideoMode(_monitor);
   spdlog::info("Window \"{}\" uses monitor \"{}\" at {}x{}", _name, glfwGetMonitorName(_monitor), mode->width,
@@ -62,26 +65,6 @@ Window::Window(const std::string& name) : _name{name}, _mouse_pos{-1.0, -1.0} {
 
 Window::~Window() {}
 
-bool Window::init_glfw() {
-  if (!glfwInit()) {
-    spdlog::error("Failed to initialize GLFW");
-    return false;
-  }
-
-  // set the error callback
-  glfwSetErrorCallback(
-      [](int code, const char* description) { spdlog::error("GLFW Error {}: {}", code, description); });
-
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-#ifndef NDEBUG
-  glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
-#endif
-
-  return true;
-}
-
 bool Window::should_close() const {
   return glfwWindowShouldClose(_window);
 }
@@ -113,6 +96,7 @@ void Window::set_mouse_pos(const glm::dvec2& mouse_pos) {
 void Window::on_framebuffer_resize(int width, int height) {
   _resolution = glm::uvec2{width, height};
   spdlog::debug("Window \"{}\" was resized to {}x{}", _name, width, height);
+  _app->on_framebuffer_resize(*this, width, height);
 }
 
 void Window::on_key(int key, int scancode, int action, int mods) {
@@ -120,21 +104,27 @@ void Window::on_key(int key, int scancode, int action, int mods) {
   if (action == GLFW_PRESS) {
     auto key_name = glfwGetKeyName(key, scancode);
     if (key_name) {
-      spdlog::debug("Key \"{}\" was pressed", key_name);
+      spdlog::debug("Key \"{}\" was pressed in window \"{}\"", key_name, _name);
     } else {
-      spdlog::debug("Key {} was pressed", key);
+      spdlog::debug("Key {} was pressed in window \"{}\"", key, _name);
     }
   }
 #endif
+  _app->on_key(*this, key, scancode, action, mods);
 }
 
 void Window::on_mouse_move(double x, double y) {
   _mouse_pos = glm::dvec2{x, y};
+  _app->on_mouse_move(*this, x, y);
 }
 
-void Window::on_mouse_button(int button, int action, int mods) {}
+void Window::on_mouse_button(int button, int action, int mods) {
+  _app->on_mouse_button(*this, button, action, mods);
+}
 
-void Window::on_scroll(double x, double y) {}
+void Window::on_scroll(double x, double y) {
+  _app->on_scroll(*this, x, y);
+}
 
 void Window::swap_buffers() const {
   glfwSwapBuffers(_window);
