@@ -50,12 +50,6 @@ class TriangleApp : public Application {
     return true;
   }
 
-  void on_key(Window& window, int key, int scancode, int action, int mods) override {
-    if (action == GLFW_PRESS && (key == GLFW_KEY_Q || key == GLFW_KEY_ESCAPE)) {
-      _window->set_should_close(true);
-    }
-  }
-
   void draw() const override {
     Application::draw();
     _program->use();

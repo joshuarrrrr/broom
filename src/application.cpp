@@ -30,16 +30,9 @@ bool Application::init() {
 void Application::on_framebuffer_resize(Window& window, int width, int height) {}
 
 void Application::on_key(Window& window, int key, int scancode, int action, int mods) {
-#ifndef NDEBUG
-  if (action == GLFW_PRESS) {
-    auto key_name = glfwGetKeyName(key, scancode);
-    if (key_name) {
-      spdlog::debug("Key \"{}\" was pressed", key_name);
-    } else {
-      spdlog::debug("Key {} was pressed", key);
-    }
+  if (action == GLFW_PRESS && (key == GLFW_KEY_Q || key == GLFW_KEY_ESCAPE)) {
+    _window->set_should_close(true);
   }
-#endif
 }
 
 void Application::on_mouse_move(Window& window, double x, double y) {}
