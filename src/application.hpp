@@ -26,9 +26,9 @@ class Application : public std::enable_shared_from_this<Application> {
   virtual void on_mouse_button(Window& window, int button, int action, int mods);
   virtual void on_scroll(Window& window, double x, double y);
 
-  void run();
-  void update();
-  void draw() const;
+  virtual void run();
+  virtual void update();
+  virtual void draw() const;
 
  protected:
   bool init_glfw() const;

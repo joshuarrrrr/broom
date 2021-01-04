@@ -56,7 +56,7 @@ class TriangleApp : public Application {
     }
   }
 
-  void draw() const {
+  void draw() const override {
     Application::draw();
     _program->use();
     _vao->bind();
