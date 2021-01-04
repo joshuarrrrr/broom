@@ -12,12 +12,12 @@ namespace broom {
 class Shader {
  public:
   Shader(GLenum type);
-  Shader(const Shader&) = delete;
-  Shader(Shader&&) = default;
+  Shader(const Shader& other);
+  Shader(Shader&& other);
   ~Shader();
 
-  Shader& operator=(const Shader& other) = delete;
-  Shader& operator=(Shader&& other) = default;
+  Shader& operator=(const Shader& other);
+  Shader& operator=(Shader&& other);
 
   friend bool operator<(const Shader& lhs, const Shader& rhs);
   static Shader load_from_file(const std::string& filename, GLenum type = GL_NONE);
@@ -41,6 +41,7 @@ class Shader {
   void destroy() const;
 
  protected:
+  bool _owner;
   GLuint _id;
 };
 

@@ -2,10 +2,31 @@
 
 namespace broom {
 
-Shader::Shader(GLenum type) : _id{glCreateShader(type)} {}
+Shader::Shader(GLenum type) : _owner{true}, _id{glCreateShader(type)} {}
+
+Shader::Shader(const Shader& other) : _owner{false}, _id{other._id} {}
+
+Shader::Shader(Shader&& other) : _owner{other._owner}, _id{other._id} {
+  other._owner = false;
+}
 
 Shader::~Shader() {
   destroy();
+}
+
+Shader& Shader::operator=(const Shader& other) {
+  destroy();
+  _owner = false;
+  _id = other._id;
+  return *this;
+}
+
+Shader& Shader::operator=(Shader&& other) {
+  destroy();
+  _owner = other._owner;
+  other._owner = false;
+  _id = other._id;
+  return *this;
 }
 
 bool operator<(const Shader& lhs, const Shader& rhs) {
@@ -99,7 +120,7 @@ GLint Shader::get_parameter(GLenum parameter) const {
 }
 
 void Shader::destroy() const {
-  if (valid()) {
+  if (valid() && _owner) {
     glDeleteShader(_id);
   }
 }
