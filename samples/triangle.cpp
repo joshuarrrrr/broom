@@ -21,12 +21,9 @@ class TriangleApp : public Application {
     if (!Application::init()) {
       return false;
     }
-    auto vert_shader = Shader::load_from_file("shaders/simple_color.vert");
-    auto frag_shader = Shader::load_from_file("shaders/simple_color.frag");
-    _program = std::make_unique<Program>();
-    _program->attach_shader(vert_shader);
-    _program->attach_shader(frag_shader);
-    _program->link();
+
+    _program = std::make_unique<Program, std::initializer_list<Shader>>(
+        {Shader::load_from_file("shaders/simple_color.vert"), Shader::load_from_file("shaders/simple_color.frag")});
 
     _vbo = std::make_unique<Buffer>();
     const std::vector<Vertex> vertices = {

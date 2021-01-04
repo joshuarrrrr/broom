@@ -23,12 +23,9 @@ class TexturedQuadApp : public Application {
     if (!Application::init()) {
       return false;
     }
-    auto vert_shader = Shader::load_from_file("shaders/colored_texture.vert");
-    auto frag_shader = Shader::load_from_file("shaders/colored_texture.frag");
-    _program = std::make_unique<Program>();
-    _program->attach_shader(vert_shader);
-    _program->attach_shader(frag_shader);
-    _program->link();
+    _program = std::make_unique<Program, std::initializer_list<Shader>>(
+        {Shader::load_from_file("shaders/colored_texture.vert"),
+         Shader::load_from_file("shaders/colored_texture.frag")});
 
     glm::vec4 color{0.95686275, 0.2627451, 0.21176471, 1.0};
     _vbo = std::make_unique<Buffer>();
