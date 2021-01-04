@@ -22,6 +22,7 @@ class Application : public std::enable_shared_from_this<Application> {
 
   virtual bool init();
 
+  const std::string& name() const;
   const glm::vec4 clear_color() const;
 
   void set_clear_color(const glm::vec4& color);

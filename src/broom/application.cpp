@@ -28,6 +28,10 @@ bool Application::init() {
   return true;
 }
 
+const std::string& Application::name() const {
+  return _name;
+}
+
 const glm::vec4 Application::clear_color() const {
   return _clear_color;
 }
