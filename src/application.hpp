@@ -3,6 +3,8 @@
 #include <memory>
 #include <string>
 
+#include <spdlog/spdlog.h>
+
 #include "opengl.hpp"
 #include "window.hpp"
 

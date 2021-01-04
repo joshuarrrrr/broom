@@ -4,7 +4,6 @@
 #include <string>
 
 #include <spdlog/spdlog.h>
-#include <glm/glm.hpp>
 
 #include "opengl.hpp"
 

@@ -3,8 +3,9 @@
 #include <fstream>
 #include <string>
 
-#include <glad/glad.h>
 #include <spdlog/spdlog.h>
+
+#include "opengl.hpp"
 
 namespace broomstick {
 

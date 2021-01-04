@@ -6,6 +6,7 @@
 
 #include <spdlog/spdlog.h>
 
+#include "opengl.hpp"
 #include "shader.hpp"
 
 namespace broomstick {
