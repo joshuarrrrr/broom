@@ -7,7 +7,7 @@
 
 #include "opengl.hpp"
 
-namespace broomstick {
+namespace broom {
 
 class Shader {
  public:
@@ -43,4 +43,4 @@ class Shader {
   GLuint _id;
 };
 
-}  // namespace broomstick
+}  // namespace broom

@@ -7,7 +7,7 @@
 #include "opengl.hpp"
 #include "buffer.hpp"
 
-namespace broomstick {
+namespace broom {
 
 class VertexArray {
  public:
@@ -44,4 +44,4 @@ class VertexArray {
   GLuint _id;
 };
 
-}  // namespace broomstick
+}  // namespace broom

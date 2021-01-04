@@ -1,6 +1,6 @@
 #include "buffer.hpp"
 
-namespace broomstick {
+namespace broom {
 
 Buffer::Buffer() {
   glCreateBuffers(1, &_id);
@@ -71,4 +71,4 @@ void Buffer::destroy() const {
   }
 }
 
-}  // namespace broomstick
+}  // namespace broom

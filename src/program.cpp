@@ -1,6 +1,6 @@
 #include "program.hpp"
 
-namespace broomstick {
+namespace broom {
 
 Program::Program() : _id{glCreateProgram()} {}
 
@@ -238,4 +238,4 @@ void Program::destroy() const {
   }
 }
 
-}  // namespace broomstick
+}  // namespace broom

@@ -4,9 +4,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-project(broomstick)
+project(broom)
 
-option(BROOMSTICK_BUILD_EXAMPLES "Build the broomstick sample programs" ON)
+option(BROOM_BUILD_EXAMPLES "Build the broom sample programs" ON)
 
 # set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
@@ -17,7 +17,7 @@ find_package(glfw3 CONFIG REQUIRED)
 
 include_directories(src)
 
-add_library(broomstick
+add_library(broom
   src/application.cpp
   src/buffer.cpp
   src/program.cpp
@@ -26,13 +26,13 @@ add_library(broomstick
   src/vertex_array.cpp
   src/window.cpp
 )
-target_link_libraries(broomstick PRIVATE
+target_link_libraries(broom PRIVATE
   glad::glad
   spdlog::spdlog spdlog::spdlog_header_only
   glm
   glfw
 )
 
-if(BROOMSTICK_BUILD_EXAMPLES)
+if(BROOM_BUILD_EXAMPLES)
   add_subdirectory(samples)
 endif()

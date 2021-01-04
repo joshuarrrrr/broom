@@ -1,6 +1,6 @@
 #include "application.hpp"
 
-namespace broomstick {
+namespace broom {
 
 Application::Application(const std::string& name) : _name{name} {
 #ifdef NDEBUG
@@ -170,4 +170,4 @@ void GLAPIENTRY debug_message_callback(GLenum source,
   }
 }
 
-}  // namespace broomstick
+}  // namespace broom

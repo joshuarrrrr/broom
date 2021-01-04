@@ -7,7 +7,7 @@
 
 #include "opengl.hpp"
 
-namespace broomstick {
+namespace broom {
 
 class Application;  // forward declaration
 
@@ -52,4 +52,4 @@ class Window {
   glm::dvec2 _mouse_pos;
 };
 
-}  // namespace broomstick
+}  // namespace broom

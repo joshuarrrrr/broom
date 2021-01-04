@@ -7,7 +7,7 @@
 #include "texture.hpp"
 #include "vertex_array.hpp"
 
-using namespace broomstick;
+using namespace broom;
 
 struct Vertex {
   glm::vec2 pos;

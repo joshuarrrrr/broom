@@ -3,7 +3,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-namespace broomstick {
+namespace broom {
 
 Texture::Texture() {
   glCreateTextures(GL_TEXTURE_2D, 1, &_id);
@@ -157,4 +157,4 @@ GLfloat Texture::get_float_level_paremeter(GLenum parameter, GLuint level) const
   return result;
 }
 
-}  // namespace broomstick
+}  // namespace broom

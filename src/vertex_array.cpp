@@ -1,6 +1,6 @@
 #include "vertex_array.hpp"
 
-namespace broomstick {
+namespace broom {
 
 VertexArray::VertexArray() {
   glCreateVertexArrays(1, &_id);
@@ -80,4 +80,4 @@ void VertexArray::destroy() const {
   }
 }
 
-}  // namespace broomstick
+}  // namespace broom

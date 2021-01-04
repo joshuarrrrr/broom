@@ -1,6 +1,6 @@
 #include "shader.hpp"
 
-namespace broomstick {
+namespace broom {
 
 Shader::Shader(GLenum type) : _id{glCreateShader(type)} {}
 
@@ -88,4 +88,4 @@ void Shader::destroy() const {
   }
 }
 
-}  // namespace broomstick
+}  // namespace broom

@@ -8,7 +8,7 @@
 #include "opengl.hpp"
 #include "window.hpp"
 
-namespace broomstick {
+namespace broom {
 
 class Application : public std::enable_shared_from_this<Application> {
  public:
@@ -49,4 +49,4 @@ void GLAPIENTRY debug_message_callback(GLenum source,
                                        const GLchar* message,
                                        const void* user_param);
 
-}  // namespace broomstick
+}  // namespace broom

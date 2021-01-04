@@ -5,7 +5,7 @@
 #include "opengl.hpp"
 #include <spdlog/spdlog.h>
 
-namespace broomstick {
+namespace broom {
 
 class Texture {
  public:
@@ -67,4 +67,4 @@ class Texture {
   GLuint _id;
 };
 
-}  // namespace broomstick
+}  // namespace broom

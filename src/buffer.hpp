@@ -6,7 +6,7 @@
 
 #include "opengl.hpp"
 
-namespace broomstick {
+namespace broom {
 
 class Buffer {
  public:
@@ -46,4 +46,4 @@ class Buffer {
   GLuint _id;
 };
 
-}  // namespace broomstick
+}  // namespace broom

@@ -2,7 +2,7 @@
 
 #include "window.hpp"
 
-namespace broomstick {
+namespace broom {
 
 Window::Window(const std::shared_ptr<Application>& app, const std::string& name)
     : _app{app}, _name{name}, _mouse_pos{-1.0, -1.0} {
@@ -130,4 +130,4 @@ void Window::swap_buffers() const {
   glfwSwapBuffers(_window);
 }
 
-}  // namespace broomstick
+}  // namespace broom
