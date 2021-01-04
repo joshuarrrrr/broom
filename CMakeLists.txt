@@ -22,6 +22,7 @@ add_library(broomstick
   src/buffer.cpp
   src/program.cpp
   src/shader.cpp
+  src/texture.cpp
   src/vertex_array.cpp
   src/window.cpp
 )
