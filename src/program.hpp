@@ -1,6 +1,5 @@
 #pragma once
 
-#include <functional>
 #include <set>
 #include <string>
 
@@ -14,7 +13,7 @@ namespace broom {
 class Program {
  public:
   Program();
-  Program(const std::set<std::reference_wrapper<Shader>>& shaders);
+  Program(const std::set<Shader>& shaders);
   Program(const Program&) = delete;
   Program(Program&&) = default;
   ~Program();

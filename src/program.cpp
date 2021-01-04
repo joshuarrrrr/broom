@@ -4,7 +4,7 @@ namespace broom {
 
 Program::Program() : _id{glCreateProgram()} {}
 
-Program::Program(const std::set<std::reference_wrapper<Shader>>& shaders) : _id{glCreateProgram()} {
+Program::Program(const std::set<Shader>& shaders) : _id{glCreateProgram()} {
   for (const auto& shader : shaders) {
     attach_shader(shader);
   }
