@@ -30,7 +30,6 @@ bool Application::init() {
 void Application::on_framebuffer_resize(Window& window, int width, int height) {}
 
 void Application::on_key(Window& window, int key, int scancode, int action, int mods) {
-  spdlog::warn("Application key callback");
 #ifndef NDEBUG
   if (action == GLFW_PRESS) {
     auto key_name = glfwGetKeyName(key, scancode);
