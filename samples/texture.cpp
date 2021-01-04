@@ -51,7 +51,7 @@ class TexturedQuadApp : public Application {
     _vao->set_attribute_binding(2, 0);
 
     _texture = std::make_unique<Texture>();
-    _texture->load_from_file("images/heart.png");
+    _texture->load_image_from_file("images/heart.png");
     _texture->set_mag_filter(GL_NEAREST);
 
     return true;

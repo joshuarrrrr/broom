@@ -10,12 +10,14 @@ namespace broom {
 class Texture {
  public:
   Texture();
-  Texture(const Texture&) = delete;
-  Texture(Texture&&) = default;
+  Texture(const Texture& other);
+  Texture(Texture&& other);
   ~Texture();
 
-  Texture& operator=(const Texture& other) = delete;
-  Texture& operator=(Texture&& other) = default;
+  Texture& operator=(const Texture& other);
+  Texture& operator=(Texture&& other);
+
+  static Texture load_from_file(const std::string& filename);
 
   GLuint id() const;
   GLenum format() const;
@@ -54,7 +56,7 @@ class Texture {
                       GLsizei width,
                       GLsizei height);
 
-  bool load_from_file(const std::string& filename);
+  bool load_image_from_file(const std::string& filename);
 
  protected:
   void destroy();
@@ -64,6 +66,7 @@ class Texture {
   GLfloat get_float_level_paremeter(GLenum parameter, GLuint level = 0) const;
 
  protected:
+ bool _owner;
   GLuint _id;
 };
 

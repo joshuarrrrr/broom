@@ -9,8 +9,37 @@ Texture::Texture() {
   glCreateTextures(GL_TEXTURE_2D, 1, &_id);
 }
 
+Texture::Texture(const Texture& other) : _owner{false}, _id{other._id} {}
+
+Texture::Texture(Texture&& other) : _owner{other._owner}, _id{other._id} {
+  other._owner = false;
+}
+
 Texture::~Texture() {
   destroy();
+}
+
+Texture& Texture::operator=(const Texture& other) {
+  destroy();
+  _owner = false;
+  _id = other._id;
+  return *this;
+}
+
+Texture& Texture::operator=(Texture&& other) {
+  destroy();
+  _owner = other._owner;
+  other._owner = false;
+  _id = other._id;
+  return *this;
+}
+
+Texture Texture::load_from_file(const std::string& filename) {
+  Texture texture;
+  if (!texture.load_image_from_file(filename)) {
+    throw std::runtime_error("Failed to load texture from file \"" + filename + "\"");
+  }
+  return texture;
 }
 
 GLuint Texture::id() const {
@@ -102,7 +131,7 @@ void Texture::copy_sub_image(GLint level,
   glCopyTextureSubImage2D(_id, level, x, y, read_buffer_x, read_buffer_y, width, height);
 }
 
-bool Texture::load_from_file(const std::string& filename) {
+bool Texture::load_image_from_file(const std::string& filename) {
   int width, height, num_channels;
   stbi_set_flip_vertically_on_load(1);
   unsigned char* data = stbi_load(filename.c_str(), &width, &height, &num_channels, 0);
