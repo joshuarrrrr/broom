@@ -29,15 +29,13 @@ class TexturedQuadApp : public Application {
 
     glm::vec4 color{0.95686275, 0.2627451, 0.21176471, 1.0};
     _vbo = std::make_unique<Buffer>();
-    const std::vector<Vertex> vertices = {{glm::vec2{-0.5, -0.5}, glm::vec2{0.0f, 0.0f}, color},
-                                          {glm::vec2{0.5, -0.5}, glm::vec2{1.0f, 0.0f}, color},
-                                          {glm::vec2{-0.5, 0.5}, glm::vec2{0.0f, 1.0f}, color},
-                                          {glm::vec2{0.5, 0.5}, glm::vec2{1.0f, 1.0f}, color}};
-    _vbo->set_data(sizeof(Vertex) * vertices.size(), vertices.data());
+    _vbo->set_data(std::vector<Vertex>{{glm::vec2{-0.5, -0.5}, glm::vec2{0.0f, 0.0f}, color},
+                                       {glm::vec2{0.5, -0.5}, glm::vec2{1.0f, 0.0f}, color},
+                                       {glm::vec2{-0.5, 0.5}, glm::vec2{0.0f, 1.0f}, color},
+                                       {glm::vec2{0.5, 0.5}, glm::vec2{1.0f, 1.0f}, color}});
 
     _ibo = std::make_unique<Buffer>();
-    const std::vector<uint32_t> indices = {0, 1, 2, 2, 1, 3};
-    _ibo->set_data(sizeof(uint32_t) * indices.size(), indices.data());
+    _ibo->set_data(std::vector<uint32_t>{0, 1, 2, 2, 1, 3});
 
     _vao = std::make_unique<VertexArray>();
     _vao->set_vertex_buffer(0, *_vbo, 0, sizeof(Vertex));

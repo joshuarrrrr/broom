@@ -26,12 +26,11 @@ class TriangleApp : public Application {
         {Shader::load_from_file("shaders/simple_color.vert"), Shader::load_from_file("shaders/simple_color.frag")});
 
     _vbo = std::make_unique<Buffer>();
-    const std::vector<Vertex> vertices = {
+    _vbo->set_data(std::vector<Vertex>{
         {glm::vec2{-0.5, -0.5}, glm::vec4{1.0f, 0.0f, 0.0f, 1.0f}},
         {glm::vec2{0.5, -0.5}, glm::vec4{0.0f, 1.0f, 0.0f, 1.0f}},
         {glm::vec2{0.0, 0.5}, glm::vec4{0.0f, 0.0f, 1.0f, 1.0f}},
-    };
-    _vbo->set_data(sizeof(Vertex) * vertices.size(), vertices.data());
+    });
 
     _vao = std::make_unique<VertexArray>();
     _vao->set_vertex_buffer(0, *_vbo, 0, sizeof(Vertex));

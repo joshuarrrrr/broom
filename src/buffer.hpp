@@ -28,6 +28,10 @@ class Buffer {
   void bind(GLenum target) const;
   static void unbind(GLenum target);
 
+  template <typename T>
+  void set_data(const std::vector<T>& vector, GLenum usage = GL_STATIC_DRAW) {
+    set_data(sizeof(T) * vector.size(), vector.data(), usage);
+  }
   void set_data(GLsizeiptr size, const void* data = nullptr, GLenum usage = GL_STATIC_DRAW);
   void set_sub_data(GLintptr offset, GLsizeiptr size, const void* data);
   void clear_sub_data(GLenum internal_format,
