@@ -20,6 +20,7 @@ class Shader {
   Shader& operator=(Shader&& other) = default;
 
   friend bool operator<(const Shader& lhs, const Shader& rhs);
+  static Shader load_from_file(const std::string& filename, GLenum type = GL_NONE);
 
   bool valid() const;
   GLuint id() const;
@@ -42,5 +43,7 @@ class Shader {
  protected:
   GLuint _id;
 };
+
+GLenum detect_shader_type_from_filename(const std::string& filename);
 
 }  // namespace broom

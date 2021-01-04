@@ -21,10 +21,8 @@ class TriangleApp : public Application {
     if (!Application::init()) {
       return false;
     }
-    auto vert_shader = Shader{GL_VERTEX_SHADER};
-    vert_shader.load_source_from_file("shaders/simple_color.vert");
-    auto frag_shader = Shader{GL_FRAGMENT_SHADER};
-    frag_shader.load_source_from_file("shaders/simple_color.frag");
+    auto vert_shader = Shader::load_from_file("shaders/simple_color.vert");
+    auto frag_shader = Shader::load_from_file("shaders/simple_color.frag");
     _program = std::make_unique<Program>();
     _program->attach_shader(vert_shader);
     _program->attach_shader(frag_shader);

@@ -12,6 +12,22 @@ bool operator<(const Shader& lhs, const Shader& rhs) {
   return lhs._id < rhs._id;
 }
 
+Shader Shader::load_from_file(const std::string& filename, GLenum type) {
+  if (type == GL_NONE) {
+    type = detect_shader_type_from_filename(filename);
+    if (type == GL_NONE) {
+      throw std::runtime_error("Failed to detect shader type from filename \"" + filename + "\"");
+    }
+  }
+
+  Shader shader{type};
+  if (!shader.load_source_from_file(filename)) {
+    throw std::runtime_error("Failed to load shader from file \"" + filename + "\"");
+  }
+
+  return shader;
+}
+
 bool Shader::valid() const {
   return glIsShader(_id) != GL_FALSE;
 }
@@ -86,6 +102,23 @@ void Shader::destroy() const {
   if (valid()) {
     glDeleteShader(_id);
   }
+}
+
+GLenum detect_shader_type_from_filename(const std::string& filename) {
+  auto file_ending_2 = filename.substr(filename.length() - 2, 2);
+  auto file_ending_4 = filename.substr(filename.length() - 4, 4);
+  if (file_ending_4 == "vert" || file_ending_2 == "vs") {
+    return GL_VERTEX_SHADER;
+  } else if (file_ending_4 == "tesc") {
+    return GL_TESS_CONTROL_SHADER;
+  } else if (file_ending_4 == "tese") {
+    return GL_TESS_EVALUATION_SHADER;
+  } else if (file_ending_4 == "geom") {
+    return GL_GEOMETRY_SHADER;
+  } else if (file_ending_4 == "frag" || file_ending_2 == "fs") {
+    return GL_FRAGMENT_SHADER;
+  }
+  return GL_NONE;
 }
 
 }  // namespace broom
