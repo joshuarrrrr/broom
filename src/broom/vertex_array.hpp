@@ -4,8 +4,8 @@
 
 #include <spdlog/spdlog.h>
 
-#include "opengl.hpp"
-#include "buffer.hpp"
+#include <broom/opengl.hpp>
+#include <broom/buffer.hpp>
 
 namespace broom {
 

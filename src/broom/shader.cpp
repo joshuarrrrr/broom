@@ -1,4 +1,4 @@
-#include "shader.hpp"
+#include <broom/shader.hpp>
 
 namespace broom {
 

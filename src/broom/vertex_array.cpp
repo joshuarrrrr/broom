@@ -1,4 +1,4 @@
-#include "vertex_array.hpp"
+#include <broom/vertex_array.hpp>
 
 namespace broom {
 

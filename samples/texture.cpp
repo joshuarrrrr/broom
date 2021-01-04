@@ -1,11 +1,11 @@
 #include <memory>
 
-#include "application.hpp"
-#include "buffer.hpp"
-#include "program.hpp"
-#include "shader.hpp"
-#include "texture.hpp"
-#include "vertex_array.hpp"
+#include <broom/application.hpp>
+#include <broom/buffer.hpp>
+#include <broom/program.hpp>
+#include <broom/shader.hpp>
+#include <broom/texture.hpp>
+#include <broom/vertex_array.hpp>
 
 using namespace broom;
 

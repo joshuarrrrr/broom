@@ -18,13 +18,13 @@ find_package(glfw3 CONFIG REQUIRED)
 include_directories(src)
 
 add_library(broom
-  src/application.cpp
-  src/buffer.cpp
-  src/program.cpp
-  src/shader.cpp
-  src/texture.cpp
-  src/vertex_array.cpp
-  src/window.cpp
+  src/broom/application.cpp
+  src/broom/buffer.cpp
+  src/broom/program.cpp
+  src/broom/shader.cpp
+  src/broom/texture.cpp
+  src/broom/vertex_array.cpp
+  src/broom/window.cpp
 )
 target_link_libraries(broom PRIVATE
   glad::glad

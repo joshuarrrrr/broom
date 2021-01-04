@@ -1,4 +1,4 @@
-#include "program.hpp"
+#include <broom/program.hpp>
 
 namespace broom {
 

@@ -2,8 +2,9 @@
 
 #include <string>
 
-#include "opengl.hpp"
 #include <spdlog/spdlog.h>
+
+#include <broom/opengl.hpp>
 
 namespace broom {
 

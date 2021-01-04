@@ -5,8 +5,8 @@
 
 #include <spdlog/spdlog.h>
 
-#include "opengl.hpp"
-#include "shader.hpp"
+#include <broom/opengl.hpp>
+#include <broom/shader.hpp>
 
 namespace broom {
 
