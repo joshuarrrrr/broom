@@ -22,6 +22,10 @@ class Application : public std::enable_shared_from_this<Application> {
 
   virtual bool init();
 
+  const glm::vec4 clear_color() const;
+
+  void set_clear_color(const glm::vec4& color);
+
   virtual void on_framebuffer_resize(Window& window, int width, int height);
   virtual void on_key(Window& window, int key, int scancode, int action, int mods);
   virtual void on_mouse_move(Window& window, double x, double y);
@@ -39,6 +43,7 @@ class Application : public std::enable_shared_from_this<Application> {
  protected:
   std::string _name;
   std::unique_ptr<Window> _window;
+  glm::vec4 _clear_color;
 };
 
 void GLAPIENTRY debug_message_callback(GLenum source,

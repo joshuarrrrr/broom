@@ -2,7 +2,8 @@
 
 namespace broom {
 
-Application::Application(const std::string& name) : _name{name} {
+Application::Application(const std::string& name)
+    : _name{name}, _clear_color{0.14901961, 0.19607843, 0.21960784, 0.00392157} {
 #ifdef NDEBUG
   spdlog::set_level(spdlog::level::info);
 #else
@@ -25,6 +26,14 @@ bool Application::init() {
   }
   spdlog::debug("Initialized application \"{}\"", _name);
   return true;
+}
+
+const glm::vec4 Application::clear_color() const {
+  return _clear_color;
+}
+
+void Application::set_clear_color(const glm::vec4& color) {
+  _clear_color = color;
 }
 
 void Application::on_framebuffer_resize(Window& window, int width, int height) {}
@@ -58,7 +67,7 @@ void Application::update() {
 
 void Application::draw() const {
   glViewport(0, 0, _window->resolution().x, _window->resolution().y);
-  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+  glClearColor(_clear_color.r, _clear_color.g, _clear_color.b, _clear_color.a);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
