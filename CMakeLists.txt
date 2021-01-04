@@ -8,7 +8,7 @@ project(broom)
 
 option(BROOM_BUILD_EXAMPLES "Build the broom sample programs" ON)
 
-# set(OpenGL_GL_PREFERENCE GLVND)
+set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
