@@ -6,14 +6,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(broom)
 
-option(BROOM_BUILD_EXAMPLES "Build the broom sample programs" ON)
-
 set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
-find_package(spdlog CONFIG REQUIRED)
-find_package(glad CONFIG REQUIRED)
-find_package(glm CONFIG REQUIRED)
-find_package(glfw3 CONFIG REQUIRED)
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+option(BROOM_BUILD_EXAMPLES "Build the broom sample programs" ON)
 
 include_directories(src)
 
@@ -26,12 +25,7 @@ add_library(broom
   src/broom/vertex_array.cpp
   src/broom/window.cpp
 )
-target_link_libraries(broom PRIVATE
-  glad::glad
-  spdlog::spdlog spdlog::spdlog_header_only
-  glm
-  glfw
-)
+target_link_libraries(broom PRIVATE ${OPENGL_LIBRARIES} ${CONAN_LIBS})
 
 if(BROOM_BUILD_EXAMPLES)
   add_subdirectory(samples)
